@@ -15,7 +15,7 @@ class Setttings:
     API_KEY = os.getenv("API_KEY")
     MODEL = os.getenv("MODEL")
     POSTGRES_URI = os.getenv("POSTGRES_URI")
-    AGENTS_NAMESPACE=666
+    AGENTS_NAMESPACE="666"
     LOCAL_SKILLS_DIR=os.getenv("LOCAL_SKILLS_DIR")
 
 

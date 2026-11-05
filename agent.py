@@ -4,12 +4,19 @@ from deepagents.backends import CompositeBackend, StoreBackend, FilesystemBacken
 from langchain_openai import ChatOpenAI
 from langgraph.checkpoint.postgres import PostgresSaver
 from langgraph.store.postgres import PostgresStore
-
 from config_settings import settings
-
 from context_type import  MemoryContext
 
+from contextlib import  ExitStack
+
 default_backend=StateBackend()
+
+stack=ExitStack()
+checkpointer=stack.enter_context(PostgresSaver.from_conn_string(settings.POSTGRES_URI))
+store=stack.enter_context(PostgresStore.from_conn_string(settings.POSTGRES_URI))
+
+checkpointer.setup()
+store.setup()
 
 model = ChatOpenAI(
     model=settings.MODEL,
@@ -18,10 +25,7 @@ model = ChatOpenAI(
     use_responses_api=False,
 )
 
-with PostgresSaver.from_conn_string(settings.POSTGRES_URI) as checkpointer, \
-     PostgresStore.from_conn_string(settings.POSTGRES_URI) as store:
-
-     agent = create_deep_agent(
+agent = create_deep_agent(
         model=model,
         context_schema=MemoryContext,
         memory=["/memories/AGENTS.md","/memories/habits.md"],
@@ -46,8 +50,6 @@ with PostgresSaver.from_conn_string(settings.POSTGRES_URI) as checkpointer, \
                 )
             },
         ),
-
-
     )
 
-     return agent;
+stack.close()
