@@ -1,0 +1,16 @@
+[project]
+name = "wooagent"
+version = "0.1.0"
+description = "一个使用Deepagents 开发的harness框架 Toc 应用程序"
+requires-python = ">=3.13"
+dependencies = [
+    "deepagents>=0.7.32",
+    "dotenv>=0.9.9",
+    "langchain-openai>=1.7.3",
+    "langgraph-checkpoint-postgres>=3.2.0",
+    "postgres>=4.0",
+]
+
+[[tool.uv.index]]
+url = "https://pypi.tuna.tsinghua.edu.cn/simple"
+default = true
