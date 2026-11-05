@@ -15,9 +15,10 @@ class Setttings:
     API_KEY = os.getenv("API_KEY")
     MODEL = os.getenv("MODEL")
     POSTGRES_URI = os.getenv("POSTGRES_URI")
-    AGENTS_NAMESPACE="666"
+    AGENTS_NAMESPACE=os.getenv("AGENTS_NAMESPACE")
     LOCAL_SKILLS_DIR=os.getenv("LOCAL_SKILLS_DIR")
-
+    SANDBOX_IDLE_TIMEOUT=os.getenv("SANDBOX_IDLE_TIMEOUT")
+    SANDBOX_CLEANUP_INTERVAL=os.getenv("SANDBOX_CLEANUP_INTERVAL")
 
 
 settings = Setttings()

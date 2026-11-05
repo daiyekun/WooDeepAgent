@@ -5,9 +5,11 @@ description = "一个使用Deepagents 开发的harness框架 Toc 应用程序"
 requires-python = ">=3.13"
 dependencies = [
     "deepagents>=0.7.32",
+    "deepagents-opensandbox>=1.0.2",
     "dotenv>=0.9.9",
     "langchain-openai>=1.7.3",
     "langgraph-checkpoint-postgres>=3.2.0",
+    "opensandbox>=1.2.0",
     "postgres>=4.0",
     "psycopg[binary,pool]>=3.3.8",
 ]
