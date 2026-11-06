@@ -7,7 +7,7 @@ import  logging
 
 logger=logging.getLogger(__name__)
 
-from config_settings import settings
+from app.config_settings import settings
 
 class _SandboxEntry:
     def __init__(self,sandbox:SandboxSync,backend:OpensandboxBackend):
