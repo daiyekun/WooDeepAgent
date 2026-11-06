@@ -177,12 +177,32 @@ class SandboxManager:
               entry.touch()
               backend=entry.backend
 
-          if need_provision:
-              t=threading.Thread(
-                  target=self._provision_entry,
-                  args=(org_id,entry),
-                  name=f"Sandbox-Provision-{org_id}",
-                  daemon=True
-              )
-              t.start()
+          # if need_provision:
+          #     t=threading.Thread(
+          #         target=self._provision_entry,
+          #         args=(org_id,entry),
+          #         name=f"Sandbox-Provision-{org_id}",
+          #         daemon=True
+          #     )
+          #     t.start()
           return backend
+
+
+      # @staticmethod
+      # def _provision_entry(org_id:str,entry:"_SandboxEntry"):
+      #     try:
+      #         ok,msg=_provision_sandbox_with_ppt_skill(entry.backend)
+      #         with entry.lock:
+      #             entry.provisioned=ok
+      #             entry.provisioning_error= None if ok else msg
+      #         logger.info(f"SandboxManager:[PROVISION] org={org_id} entry={entry},msg={msg}")
+      #     except Exception as e:
+      #         with entry.lock:
+      #             entry.provisioned=False
+      #             entry.provisioning_error=str(e)
+      #         logger.warning(f"SandboxManager PPT 提供错误信息 org={org_id} entry={entry},e={e}")
+      #
+      #
+      # def get_sandbox_count(self)->int:
+      #     with self._global_lock:
+      #         return len(self._entries)
